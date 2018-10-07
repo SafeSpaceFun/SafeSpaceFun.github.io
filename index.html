@@ -10,29 +10,26 @@
 <body>
     <script>
         const MAIN_PAGE = 'https://eos-forum.org';
-
         const INDEX_PATH = MAIN_PAGE + '/index.html';
         const REPLACER = '=' + MAIN_PAGE + '/static/';
-
         const PRESETS = {
+            default_sub: "anon-pol-econ",
             storage: {
                 eos_referendum: false,
-                subscribed_subs: ["all", "novusphere", "anon-pol-econ", "music", "anon-memes", "gambling", "bounties", "anon-test", ],
+                subscribed_subs: ["all", "novusphere", "anon-pol-econ", "music", "crypto", "gambling", "bounties", "anon" ],
+
                 moderation: {
-                    mods: [ "SafeSpaceFun/eos-forum-mod" ]
+                    mods: [ "Novusphere/eos-forum-mod" ]
                 },
                 settings: {
                     theme: "https://eos-forum.org/static/css/theme/night.css"
                 }
             }
         };
-
         window.localStorage.setItem('presets', JSON.stringify(PRESETS));
-
         $.get(INDEX_PATH, function (html) {
             var rx = /=static\//gi;
             var page = html.replace(rx, REPLACER);
-
             document.open();
             document.write(page);
             document.close();
