@@ -9,61 +9,37 @@
 
 <body>
     <script>
-        const MAIN_PAGE = 'https://eos-forum.org';
-        const INDEX_PATH = MAIN_PAGE + '/index.html';
-        const REPLACER = '=' + MAIN_PAGE + '/static/';
-        const PRESETS = {
-            default_sub: "anon-pol-econ",
-            storage: {
-                eos_r<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <script>
         (function () {
             if (window.location.protocol == 'http:') {
                 window.location.protocol = "https:";
                 return;
             }
-
             const MAIN_PAGE = 'https://eos-forum.org';
-
             const INDEX_PATH = MAIN_PAGE + '/index.html';
             const REPLACER = '=' + MAIN_PAGE + '/static/';
-
             const PRESETS = {
-                default_sub: "all",
+                default_sub: "anon-pol-econ",
                 header_texts: [
                     "Welcome to [safe-space.fun](https://safe-space.fun) a community moderated forum on the EOS blockchain.",
                     "Delegated moderators can be changed in **'settings'**.",
                     "Post anonymously without an EOS account in any [../#/e/anon-](/#/e/anon-) sub"
                 ],
-                
-            storage: {
-                eos_referendum: false,
-                subscribed_subs: ["all", "anon-pol-econ", "novusphere", "crypto", "music", "anon-memes", "games", "bounties", "anon"],
-
-                moderation: {
-                    mods: [ "safespacefun/eos-forum-mod" ]
+                storage: {
+                    eos_referendum: false,
+                    subscribed_subs: ["all", "anon-pol-econ", "novusphere", "crypto", "music", "anon-memes", "games", "bounties", "anon"],
+                    moderation: {
+                        hide_spam_threads: false,
+                        mods: ["safespacefun/eos-forum-mod"]
                     },
                     settings: {
                         theme: "https://eos-forum.org/static/css/theme/night.css"
                     }
                 }
             };
-
             window.localStorage.setItem('presets', JSON.stringify(PRESETS));
-
             $.get(INDEX_PATH, function (html) {
                 var rx = /=static\//gi;
                 var page = html.replace(rx, REPLACER);
-
                 document.open();
                 document.write(page);
                 document.close();
